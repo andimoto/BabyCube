@@ -19,7 +19,7 @@ include <utils/HolePositions.scad>
 use <Parameters_Positions.scad>
 
 
-staged_assembly = true; // set this to false for faster builds during development
+staged_assembly = false; // set this to false for faster builds during development
 
 module staged_assembly(name, big, ngb) {
     if (staged_assembly)
@@ -157,8 +157,12 @@ staged_assembly("Stage_5", big=true, ngb=true) {
 module FinalAssembly() {
     translate([-(eX + 2*eSizeX)/2, - (eY + 2*eSizeY)/2, -eZ/2])
         if ($target == "BC200_test") {
-            Left_Face_stl();
-            Right_Face_stl();
+            /* Left_Face_stl();
+            Right_Face_stl(); */
+            Base_stl();
+            /* Base_Template_stl(); */
+            /* translate([0,230,0])
+            Back_Face_stl(); */
         } else {
             Stage_5_assembly();
             if (!exploded())

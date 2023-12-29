@@ -27,9 +27,12 @@ pcbType = BTT_SKR_MINI_E3_V2_0;
 AL3 = [ "AL3", "Aluminium sheet", 3, silver * 1.1, false];
 AL12x8x1 =  ["AL12x8x1",  "Aluminium box section 12mm x 8mm x 1mm",     [12, 8],  1, 0.5, silver, undef];
 
+// andimoto_mod:
+NEMA17_cutout_xy = 43;
 
 module Base_stl() {
     size = [eX + 2*eSizeX + _backPlateOutset.x, eY + 2*eSizeY + _backPlateOutset.y, _basePlateThickness];
+
 
     stl("Base")
         color(pp3_colour) {
@@ -42,6 +45,9 @@ module Base_stl() {
                     difference() {
                         rounded_square([size.x, size.y], _fillet, center=false);
                         baseCutouts(pcb=_useCNC ? BTT_SKR_MINI_E3_V2_0 : undef);
+
+                        translate([size.x/2-NEMA17_cutout_xy/2,size.y-NEMA17_cutout_xy,0])
+                            square(NEMA17_cutout_xy,NEMA17_cutout_xy);
                     }
         }
 }

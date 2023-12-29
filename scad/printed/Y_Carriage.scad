@@ -246,7 +246,7 @@ module Y_Carriage(yCarriageType, idlerHeight, pulleyBore, xRailType, xRailLength
                 vflip()
                     boltHole(4, 20, twist=4, cnc=cnc);
         if (!left && pulleyBore == 4)
-            translate([toothedPulleyPos.x, toothedPulleyPos.y, , thickness + 1.5 + 2*pulleyStackHeight(idlerHeight, pulleyBore)])
+            translate([toothedPulleyPos.x, toothedPulleyPos.y, thickness + 1.5 + 2*pulleyStackHeight(idlerHeight, pulleyBore)])
                 vflip()
                     boltHole(4, 20, twist=4, cnc=cnc);
         if (isMGN9C(yCarriageType))
