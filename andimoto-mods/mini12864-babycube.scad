@@ -35,12 +35,12 @@ xMoveDisplay = 3.5;
 xMoveDecoder = 79.5 + xMoveDisplay;
 
 yMoveDisplay = 1;
-yMoveDecoder = 24;
+yMoveDecoder = 23.5;
 yMoveCutoutExtra = 1;
 
 yMidMoveDecReset = 15;  // move in y of reset relativ to middle point of decoder cutout
 
-yMoveAllPCB = 2;
+yMoveAllPCB = 2.5;
 yMovePCBMount = 1;
 
 // I used a small rocker switch
@@ -92,11 +92,6 @@ module plateAdater()
       translate([-extra+xAdapter-adapterXWallthickness,-WifiSwitchYLen/2+WifiSwitchYMove,-extra])
       cube([adapterXWallthickness+extra*2,WifiSwitchYLen,WifiSwitchZLen]);
     }
-
-    /* translate([xAdapter+extra,yAdapter/2,5+5])
-    rotate([0,-90,0])
-    cylinder(r=5,h=adapterXWallthickness-2); */
-
   }
 }
 
@@ -132,7 +127,7 @@ module mountPins()
   translate([0,0,-2])
   translate([tempX,tempY,adapterThickness])
   rotate([frontPlateRotate,0,0])
-  translate([0,yMovePCBMount+yMoveAllPCB,-1-3])
+  translate([0,yMovePCBMount+yMoveAllPCB,-1-4])
   mini12864_Holes(mountPin = true);
 }
 
@@ -162,6 +157,6 @@ module pcbScrewMountHoles()
   translate([0,0,-2])
   translate([tempX,tempY,adapterThickness])
   rotate([frontPlateRotate,0,0])
-  translate([0,yMovePCBMount+yMoveAllPCB,-5])
+  translate([0,yMovePCBMount+yMoveAllPCB,-5.6])
   mini12864_Holes(height=5);
 }
