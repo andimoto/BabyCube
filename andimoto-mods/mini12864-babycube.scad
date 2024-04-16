@@ -44,7 +44,7 @@ yMoveAllPCB = 2.5;
 yMovePCBMount = 1;
 
 // I used a small rocker switch
-WifiSwitch = false;
+WifiSwitch = true;
 WifiSwitchYMove = 20;
 
 WifiSwitchYLen = 14;
