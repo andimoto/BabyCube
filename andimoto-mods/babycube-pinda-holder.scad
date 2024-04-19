@@ -111,7 +111,7 @@ module setScrewHolder()
     hull()
     {
       cube([8,6,0.01]);
-      translate([2,1,2])
+      translate([2,1,2.5])
       cube([4,4,0.01]);
     }
 }
