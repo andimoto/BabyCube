@@ -1,19 +1,22 @@
 $fn=80;
 extra=0.005;
 
-pindaD=7.8;
+pindaD=8;
 pindaExtra = 0.1;
 
 screwDia = 2;
 screwExtra = 0.3;
 
-plateExtra = 2;
+plateExtra = 3;
 pindaMountHeight = 36;
 pindaTubeHeight = 24;
-pindaMountX = 33.5;
+pindaMountX = 35;
 wallthickness=0.8;
 
-setScrewDia=3.1;
+xMoveLongHole = 3.5;
+
+setScrewDia=2.9;
+
 
 tempX=pindaD/2+pindaExtra+wallthickness;
 /* longhole(); */
@@ -42,14 +45,19 @@ module bc_pinda_holder()
     }
 
 
-    translate([plateExtra+3,tempX+extra,1+screwDia/2+screwExtra])
+    translate([plateExtra+xMoveLongHole,tempX+extra,1+screwDia/2+screwExtra])
     longhole();
-    translate([plateExtra+3+28-2,tempX+extra,1+screwDia/2+screwExtra])
+    translate([plateExtra+xMoveLongHole,tempX+extra,+screwDia/2])
     longhole();
 
-    translate([plateExtra+3+28-2,tempX+extra,6+1+screwDia/2+screwExtra])
+    translate([plateExtra+xMoveLongHole+28-2,tempX+extra,1+screwDia/2+screwExtra])
     longhole();
-    translate([plateExtra+3+1,tempX+extra,24+6+1+screwDia/2+screwExtra])
+    translate([plateExtra+xMoveLongHole+28-2,tempX+extra,screwDia/2])
+    longhole();
+
+    translate([plateExtra+xMoveLongHole+28-2,tempX+extra,6+1+screwDia/2+screwExtra])
+    longhole();
+    translate([plateExtra+xMoveLongHole+2,tempX+extra,24+6+1+screwDia/2+screwExtra])
     longhole();
 
   }
