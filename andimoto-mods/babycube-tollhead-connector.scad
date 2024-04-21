@@ -22,8 +22,8 @@ setScrewDia = 2.9;
 zMoveConnFix = 3;
 
 
-xLenTerminal = 12.5;
-yLenTerminal = 10.5;
+xLenTerminal = 12.8;
+yLenTerminal = 10.8;
 zLenTerminal = 9;
 
 xPinCutoutTerminal = 4;
@@ -94,11 +94,11 @@ xMoveConnHolder =
   xLenTerminal + xLenCon3x2 + xLenCon1x3 + connectorWallthickness*3
   - (xTH_Hook+connectorWallthickness*2);
 
-translate([xMoveConnHolder/2,0,0])
+translate([xMoveConnHolder/2,-(yTH_Hook+connectorWallthickness*2),0])
 connHolder();
 module connHolder()
 {
-  translate([0,-(yTH_Hook+connectorWallthickness*2),0])
+  /* translate([0,-(yTH_Hook+connectorWallthickness*2),0]) */
   union()
   {
     difference() {
@@ -108,18 +108,50 @@ module connHolder()
       cube([xTH_Hook,yTH_Hook,zTH_Hook]);
 
 
-      translate([connectorWallthickness+4,-extra,zTH_Hook-5])
+      translate([connectorWallthickness+4.5,-extra,zTH_Hook-5])
       rotate([-90,0,0])
       cylinder(r=screwDia/2, h=yTH_Hook);
 
-      translate([xTH_Hook+connectorWallthickness-4,-extra,zTH_Hook-5])
+      translate([xTH_Hook+connectorWallthickness-4.5,-extra,zTH_Hook-5])
       rotate([-90,0,0])
       cylinder(r=screwDia/2, h=yTH_Hook);
     }
   }
 }
 
+translate([0,-(yTH_Hook+connectorWallthickness*2),0])
+zipTieLugHorizontal();
+module zipTieLugHorizontal()
+{
+  difference()
+  {
+    union()
+    {
+      cube([2,yTH_Hook+connectorWallthickness*2,zConHeight]);
+      hull()
+      {
+        translate([0,0,0])
+        cube([extra,yTH_Hook/2,zConHeight]);
+        translate([-2,0,2])
+        cube([extra,yTH_Hook/2,zConHeight-4]);
+      }
+    }
+    translate([-1.1,-extra,3])
+    cube([1.1,yTH_Hook+connectorWallthickness*2+extra*2,zConHeight/2]);
+  }
+}
 
+translate([xMoveConnHolder/2+xTH_Hook+connectorWallthickness*2,-(yTH_Hook+connectorWallthickness*2),0])
+zipTieLugVertical();
+module zipTieLugVertical()
+{
+  difference()
+  {
+    cube([xMoveConnHolder/2,yTH_Hook+connectorWallthickness*2,3]);
+    translate([0,connectorWallthickness*2,-extra])
+    cube([1,yTH_Hook-connectorWallthickness*2,3+extra*2]);
+  }
+}
 
 
 module connector()

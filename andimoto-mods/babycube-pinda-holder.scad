@@ -55,9 +55,9 @@ module bc_pinda_holder()
     translate([plateExtra+xMoveLongHole+28-2,tempX+extra,screwDia/2])
     longhole();
 
-    translate([plateExtra+xMoveLongHole+28-2,tempX+extra,6+1+screwDia/2+screwExtra])
+    translate([plateExtra+xMoveLongHole+28-1.5,tempX+extra,6+1+screwDia/2+screwExtra])
     longhole();
-    translate([plateExtra+xMoveLongHole+2,tempX+extra,24+6+1+screwDia/2+screwExtra])
+    translate([plateExtra+xMoveLongHole+3,tempX+extra,24+6+1+screwDia/2+screwExtra])
     longhole();
 
   }
