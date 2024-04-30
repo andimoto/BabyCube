@@ -30,8 +30,37 @@ xPinCutoutTerminal = 4;
 
 connDiff = (xTH_Hook) - (xLenCon3x2+xLenCon1x3);
 
+xMoveConnHolder =
+  xLenTerminal + xLenCon3x2 + xLenCon1x3 + connectorWallthickness*3
+  - (xTH_Hook+connectorWallthickness*2);
 
-conTerminal();
+
+/* toolheadConTerminal(); */
+module toolheadConTerminal()
+{
+  translate([xLenTerminal+connectorWallthickness,0,0])
+  pinHeaderPeri();
+
+  translate([xMoveConnHolder/2,-(yTH_Hook+connectorWallthickness*2),0])
+  connHolder();
+
+  translate([0,-(yTH_Hook+connectorWallthickness*2),0])
+  zipTieLugHorizontal();
+
+  translate([xMoveConnHolder/2+xTH_Hook+connectorWallthickness*2,-(yTH_Hook+connectorWallthickness*2),0])
+  zipTieLugVertical();
+
+  conTerminal();
+}
+
+cableConTerminal();
+module cableConTerminal()
+{
+  translate([xLenTerminal+connectorWallthickness,0,0])
+  pinHeaderPeri();
+}
+
+/* conTerminal(); */
 module conTerminal()
 {
   difference()
@@ -61,8 +90,8 @@ module conTerminal()
 
 
 
-translate([xLenTerminal+connectorWallthickness,0,0])
-pinHeaderPeri();
+/* translate([xLenTerminal+connectorWallthickness,0,0])
+pinHeaderPeri(); */
 module pinHeaderPeri()
 {
   /* translate([connDiff,0,0]) */
@@ -84,18 +113,18 @@ module pinHeaderPeri()
     translate([0,0,-extra])
     connector();
 
-    translate([xTH_Hook,3-connectorWallthickness/2,4+zMoveConnFix])
+    translate([xTH_Hook-connectorWallthickness,3-connectorWallthickness/2,4+zMoveConnFix])
     rotate([0,-90,0])
     cylinder(r=setScrewDia/2, h=10);
   }
 }
 
-xMoveConnHolder =
+/* xMoveConnHolder =
   xLenTerminal + xLenCon3x2 + xLenCon1x3 + connectorWallthickness*3
   - (xTH_Hook+connectorWallthickness*2);
 
 translate([xMoveConnHolder/2,-(yTH_Hook+connectorWallthickness*2),0])
-connHolder();
+connHolder(); */
 module connHolder()
 {
   /* translate([0,-(yTH_Hook+connectorWallthickness*2),0]) */
@@ -119,8 +148,8 @@ module connHolder()
   }
 }
 
-translate([0,-(yTH_Hook+connectorWallthickness*2),0])
-zipTieLugHorizontal();
+/* translate([0,-(yTH_Hook+connectorWallthickness*2),0])
+zipTieLugHorizontal(); */
 module zipTieLugHorizontal()
 {
   difference()
@@ -141,8 +170,8 @@ module zipTieLugHorizontal()
   }
 }
 
-translate([xMoveConnHolder/2+xTH_Hook+connectorWallthickness*2,-(yTH_Hook+connectorWallthickness*2),0])
-zipTieLugVertical();
+/* translate([xMoveConnHolder/2+xTH_Hook+connectorWallthickness*2,-(yTH_Hook+connectorWallthickness*2),0])
+zipTieLugVertical(); */
 module zipTieLugVertical()
 {
   difference()
