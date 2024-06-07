@@ -10,7 +10,7 @@ height = 10;      //height (wallthickness will be added on top)
 fanX = 20;    // cutout for fan (just simple to get airflow through it)
 fanDistX = 32; //distance from 0,0
 
-fanScrewHoleDia = 3.2;    // useing M3 Screws
+fanScrewHoleDia = 3;    // useing M3 Screws
 fanScrewDist = 32;  // distance of the screws from each other
 
 difference()
@@ -22,10 +22,10 @@ difference()
   translate([holderX,bcFrameThickness+wallThickness*4-extra,0])
     cube([holderLen-holderX*2,wallThickness+extra*2,height]);
 
-  translate([fanDistX,-extra,0])
+  translate([fanDistX+fanX/2,-extra,0])
     cube([fanX,wallThickness*4+extra*2,height-wallThickness]);
 
-  translate([fanDistX+fanX/2-fanScrewDist/2 ,0,0])
+  translate([fanDistX+fanX-fanScrewDist/2 ,0,0])
   {
     translate([0,-extra,height/2])
     rotate([-90,0,0])
