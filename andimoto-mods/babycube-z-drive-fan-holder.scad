@@ -1,29 +1,31 @@
 $fn=80;
 extra=0.005;
 
-holderX = 10;
-zDriveXLen = 57;
-bcFrameThickness = 4;
-wallThickness = 1;
-height = 10;
+holderLen = 120;    // complete length (if shorter, bed will be hit the holder when driving down)
+holderX = 10;      // length of the "wings" which goes in front of the rear frame
+bcFrameThickness = 4; // wallthickness of the babycubes rear frame
+wallThickness = 1;    // std wallThickness
+height = 10;      //height (wallthickness will be added on top)
 
-fanX = 20;
+fanX = 20;    // cutout for fan (just simple to get airflow through it)
+fanDistX = 32; //distance from 0,0
 
-fanScrewHoleDia = 3.2;
-fanScrewDist = 32;
+fanScrewHoleDia = 3.2;    // useing M3 Screws
+fanScrewDist = 32;  // distance of the screws from each other
 
 difference()
 {
-  cube([holderX*2+zDriveXLen,bcFrameThickness+wallThickness*5,height+wallThickness]);
-  translate([-extra,wallThickness*4,0])
-    cube([holderX*2+zDriveXLen+extra*2,bcFrameThickness,height]);
-  translate([holderX,bcFrameThickness+wallThickness*4,0])
-    cube([zDriveXLen,wallThickness*4,height]);
+  cube([holderLen,bcFrameThickness+wallThickness*5,height+wallThickness]);
 
-  translate([(holderX*2+zDriveXLen)/2-fanX/2,-extra,0])
+  translate([-extra,wallThickness*4,0])
+    cube([holderLen+extra*2,bcFrameThickness,height]);
+  translate([holderX,bcFrameThickness+wallThickness*4-extra,0])
+    cube([holderLen-holderX*2,wallThickness+extra*2,height]);
+
+  translate([fanDistX,-extra,0])
     cube([fanX,wallThickness*4+extra*2,height-wallThickness]);
 
-  translate([(holderX*2+zDriveXLen)/2-fanScrewDist/2,0,0])
+  translate([fanDistX+fanX/2-fanScrewDist/2 ,0,0])
   {
     translate([0,-extra,height/2])
     rotate([-90,0,0])
